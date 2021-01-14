@@ -25,9 +25,9 @@ List<Map> drawerItem = [
 ];
 
 List<Map> categories = [
-  {'name': 'Kucing', 'iconPath': 'images/cat.png'},
-  {'name': 'Anjing', 'iconPath': 'images/dog.png'},
-  {'name': 'Kuda', 'iconPath': 'images/horse.png'},
-  {'name': 'Burung', 'iconPath': 'images/parrot.png'},
-  {'name': 'Kelinci', 'iconPath': 'images/rabbit.png'},
+  {'name': 'Cat', 'iconPath': 'images/cat.png'},
+  {'name': 'Dog', 'iconPath': 'images/dog.png'},
+  {'name': 'Horse', 'iconPath': 'images/horse.png'},
+  {'name': 'Parrot', 'iconPath': 'images/parrot.png'},
+  {'name': 'Rabbit', 'iconPath': 'images/rabbit.png'},
 ];

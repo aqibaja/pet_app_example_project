@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:pet_app_final_dicoding/configuration.dart';
 
@@ -5,7 +7,15 @@ import 'package:pet_app_final_dicoding/configuration.dart';
 class Screen2 extends StatefulWidget {
   Color colorBackground;
   String image;
-  Screen2({@required this.colorBackground, @required this.image});
+  String name;
+  var gender;
+  String age;
+  Screen2(
+      {@required this.colorBackground,
+      @required this.image,
+      this.name,
+      this.gender,
+      this.age});
   @override
   _Screen2State createState() => _Screen2State();
 }
@@ -19,7 +29,7 @@ class _Screen2State extends State<Screen2> {
     return Scaffold(
       body: Stack(
         children: [
-          background(),
+          background(size),
           customBarIcon(size, context),
           pet(size),
           centerContainer(size),
@@ -78,7 +88,7 @@ class _Screen2State extends State<Screen2> {
               ),
               child: Center(
                 child: Text(
-                  "Adopsi",
+                  "Adoption",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: size.width / 21,
@@ -97,10 +107,93 @@ class _Screen2State extends State<Screen2> {
       child: Container(
         margin: EdgeInsets.only(left: size.width / 17, right: size.width / 17),
         height: size.height / 5.5,
+        width: double.infinity,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(35),
+            borderRadius: BorderRadius.circular(25),
             boxShadow: listShadow),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: size.height / 55),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width / 21),
+                    child: Text(
+                      widget.name,
+                      style: TextStyle(
+                          fontSize: size.width / 11,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                      padding: EdgeInsets.only(
+                        right: size.width / 25,
+                        //bottom: size.height / 35,
+                      ),
+                      child: Icon(
+                        widget.gender,
+                        size: size.width / 11,
+                        color: Colors.black45,
+                      ))
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: size.height / 155),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: size.width / 21),
+                    child: Text(
+                      "Abyssinian cat",
+                      style: TextStyle(
+                        fontSize: size.width / 21,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                      right: size.width / 25,
+                      //bottom: size.height / 35,
+                    ),
+                    child: Text(
+                      widget.age,
+                      style: TextStyle(
+                        fontSize: size.width / 21,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: size.height / 155, left: size.width / 21),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    size: size.width / 25,
+                  ),
+                  Text(
+                    // ignore: unnecessary_brace_in_string_interps
+                    "Jln.panglima No.1, Desa.Ulee kareng",
+                    style: TextStyle(
+                        fontSize: size.width / 25,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black45),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -144,7 +237,7 @@ class _Screen2State extends State<Screen2> {
     );
   }
 
-  Column background() {
+  Column background(Size size) {
     return Column(
       children: [
         Expanded(
@@ -155,6 +248,65 @@ class _Screen2State extends State<Screen2> {
         Expanded(
           child: Container(
             color: Colors.white,
+            child: Padding(
+              padding: EdgeInsets.only(left: size.width / 25),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: size.height / 8.5,
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                          radius: size.width / 16.5,
+                          backgroundImage: AssetImage('images/law.jpg')),
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width / 33),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  "Trafalgar Law",
+                                  style: TextStyle(
+                                      fontSize: size.width / 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                SizedBox(
+                                  width: size.width / 11,
+                                ),
+                                Text("01 January 2020",
+                                    style: TextStyle(
+                                        fontSize: size.width / 23,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black45))
+                              ],
+                            ),
+                            Text("Owner",
+                                style: TextStyle(
+                                    fontSize: size.width / 23,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: size.height / 69, right: size.width / 45),
+                    child: Text(
+                        "Pekerjaan saya sebagai bajak laut sehingga saya tidak memiliki cukup waktu untuk menjaga dan merawat kucing ini. Saya mencari orang yang baik dan penyayang untuk mengadopsi kucing kesayangan saya ini.",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontSize: size.width / 23,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black54)),
+                  )
+                ],
+              ),
+            ),
           ),
         )
       ],

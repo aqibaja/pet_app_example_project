@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pet_app_final_dicoding/configuration.dart';
 import 'package:pet_app_final_dicoding/screen2.dart';
 
@@ -37,8 +38,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 searchBox(),
                 menuBinatang(size),
-                listBinatang(size, "images/pet-cat2.png", Colors.blueGrey[300]),
-                listBinatang(size, "images/pet-cat1.png", Colors.orange[300]),
+                listBinatang(size, "images/pet-cat2.png", Colors.blueGrey[300],
+                    "Gill", FontAwesomeIcons.mars, "2 years old", "5.5 km"),
+                listBinatang(size, "images/pet-cat1.png", Colors.orange[300],
+                    "Mia", FontAwesomeIcons.venus, "1.5 years old", "15 km"),
               ],
             ),
           ],
@@ -57,7 +60,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget listBinatang(Size size, String image, Color color) {
+  Widget listBinatang(
+    Size size,
+    String image,
+    Color color,
+    String namePet,
+    var gender,
+    String age,
+    String distance,
+  ) {
     return GestureDetector(
       onTap: () => Navigator.push(
           context,
@@ -65,8 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
               builder: (BuildContext context) => Screen2(
                     colorBackground: color,
                     image: image,
+                    name: namePet,
+                    age: age,
+                    gender: gender,
                   ))),
       child: Container(
+        padding: EdgeInsets.only(right: size.width / 25, left: size.width / 25),
         height: size.height / 3.5,
         child: Row(
           children: [
@@ -105,6 +120,102 @@ class _HomeScreenState extends State<HomeScreen> {
                           blurRadius: 30,
                           offset: Offset(0, 5))
                     ]),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: size.height / 55, top: size.height / 159),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: size.width / 35,
+                            ),
+                            child: Text(
+                              namePet,
+                              style: TextStyle(
+                                  fontSize: size.width / 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          Container(
+                              padding: EdgeInsets.only(
+                                right: size.width / 35,
+                                //bottom: size.height / 35,
+                              ),
+                              child: Icon(
+                                gender,
+                                size: size.width / 15,
+                                color: Colors.black45,
+                              )
+                              /*Text(
+                              gender,
+                              style: TextStyle(
+                                  fontSize: size.width / 25,
+                                  fontWeight: FontWeight.bold),
+                            ),*/
+                              )
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width / 39),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Abyssinian cat",
+                            style: TextStyle(
+                                fontSize: size.width / 25,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height / 99,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width / 39),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            age,
+                            style: TextStyle(
+                                fontSize: size.width / 29,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black45),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: size.height / 99,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: size.width / 55),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                size: size.width / 25,
+                              ),
+                              Text(
+                                // ignore: unnecessary_brace_in_string_interps
+                                "Distance: ${distance}",
+                                style: TextStyle(
+                                    fontSize: size.width / 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black45),
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
             )
           ],
@@ -117,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget menuBinatang(Size size) {
     return Container(
         margin: EdgeInsets.only(top: 10),
-        height: size.height / 9.5,
+        height: size.height / 9,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: categories.length,
@@ -128,19 +239,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: index == 0 ? primaryColor : Colors.white,
                         boxShadow: listShadow = [
                           BoxShadow(
-                              color: Colors.grey[400],
+                              color: Colors.blueGrey[400],
                               blurRadius: 10,
                               offset: Offset(0, 5))
                         ],
-                        borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(15)),
                     child: Image(
-                      image: AssetImage(categories[index]['iconPath']),
-                      height: size.height / 13,
-                      width: size.width / 6.1,
-                    ),
+                        image: AssetImage(categories[index]['iconPath']),
+                        height: size.height / 13,
+                        width: size.width / 6.1,
+                        color: index == 0 ? Colors.white : null),
                   ),
                   Text(categories[index]['name'])
                 ],
@@ -201,8 +312,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onPressed: () {
                     setState(() {
-                      xoffset = 230;
-                      yoffset = 150;
+                      xoffset = size.width / 2;
+                      yoffset = size.height / 5;
                       scalefactor = 0.6;
                       isDrawerOpen = !isDrawerOpen;
                     });
