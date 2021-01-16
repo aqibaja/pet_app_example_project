@@ -3,13 +3,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:pet_app_final_dicoding/configuration.dart';
 
-// ignore: must_be_immutable
 class Screen2 extends StatefulWidget {
-  Color colorBackground;
-  String image;
-  String name;
-  var gender;
-  String age;
+  final Color colorBackground;
+  final String image;
+  final String name;
+  final gender;
+  final String age;
   Screen2(
       {@required this.colorBackground,
       @required this.image,

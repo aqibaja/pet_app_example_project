@@ -202,8 +202,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 size: size.width / 25,
                               ),
                               Text(
-                                // ignore: unnecessary_brace_in_string_interps
-                                "Distance: ${distance}",
+                                "Distance: $distance",
                                 style: TextStyle(
                                     fontSize: size.width / 25,
                                     fontWeight: FontWeight.bold,
